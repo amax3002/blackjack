@@ -2,18 +2,18 @@
 class Card
 
   SUITS = {
-    spades: "Spades",      # => "Spades"
-    hearts: "Hearts",      # => "Hearts"
-    diamonds: "Diamonds",  # => "Diamonds"
-    clubs:  "Clubs"        # => "Clubs"
-  }                        # => {:spades=>"Spades", :hearts=>"Hearts", :diamonds=>"Diamonds", :clubs=>"Clubs"}
+    spades: "Spades",
+    hearts: "Hearts",
+    diamonds: "Diamonds",
+    clubs:  "Clubs"
+  }
 
-  attr_accessor :number, :suits  # => nil
+  attr_accessor :number, :suits
 
   def initialize (number, suits)
-    @number = number              # => "10"
-    @suits = suits                # => "Spades"
-  end                             # => :initialize
+    @number = number
+    @suits = suits
+  end
 
   def turns_into_int
     choice = self.number
@@ -25,7 +25,5 @@ class Card
     else
       return choice.to_i
     end
-  end                             # => :turns_into_int
-end                               # => :turns_into_int
-
-Card.new("10", "Spades")  # => #<Card:0x007fc02181fe50 @number="10", @suits="Spades">
+  end
+end

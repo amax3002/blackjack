@@ -18,8 +18,9 @@ class Deck
     end
     set_of_cards
   end
+
+  def deal_card
+    cards.shift
+  end
+
 end
-
-
-t = Deck.new
-t

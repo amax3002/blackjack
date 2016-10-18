@@ -17,17 +17,19 @@ class DeckTest <Minitest::Test
 
   def test_suits_counter
     new_deck = Deck.new
-
-    new_deck.cards.count("Spades")
     count = new_deck.cards.count do |card|
       card.suits == "Spades"
     end
-
-    # counts = new_deck.suits.inject(Hash.new(0)) do |collection, value|
-    #   collection[value] +=1
-    #   collection
-    # end
     assert_equal count, 13
+  end
+
+  #removes two cards
+  def test_deal_a_card
+    new_deck = Deck.new
+    count =[]
+    count << new_deck.deal_card
+    count << new_deck.deal_card
+    assert_equal count.size, 2
   end
 
 end

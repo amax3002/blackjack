@@ -3,17 +3,21 @@ require_relative './deck'
 
 class Blackjack
 
-  def play
-    deck = Deck.new
+  attr_accessor :deck
 
-    go_from_top_of_deck = -1
+  def initialize
+    @deck = Deck.new
+  end
 
-    first_card = deck[go_from_top_of_deck += 1].turns_into_int
+  def setup
+    players_hand = []
+    dealers_hand = []
 
-    dealer_first_card = deck[go_from_top_of_deck += 1].turns_into_int
+    players_hand << deck.deal_card
+    dealers_hand << deck.deal_card
+    players_hand << deck.deal_card
+    dealers_hand << deck.deal_card
 
-    second_card = deck[go_from_top_of_deck += 1].turns_into_int
 
-    total_card_value = first_card + second_card
   end
 end
