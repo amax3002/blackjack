@@ -28,6 +28,6 @@ class Card
   end
 
   def card_face
-    choice = self.number
+    self.number
   end
 end

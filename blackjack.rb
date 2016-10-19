@@ -4,6 +4,8 @@ require_relative './hand'
 
 class Blackjack
 
+  STAND = ["Stand", "stand", "s", "Stay", "stay"]
+
   attr_accessor :deck, :players_hand, :dealers_hand
 
   def initialize
@@ -40,17 +42,16 @@ class Blackjack
   #   end
   # end
 
-  def blackjack
-    if @players_hand.value == 21
-      puts "BLACKJACK!!!!"
-      exit
-    end
+  def dealer_blackjack
+    @dealers_hand.value == 21
+  end
+
+  def player_blackjack
+    @players_hand.value == 21
   end
 
   def end_game
-    if @dealers_hand.value == 21
-      "Dealer's Blackjack"
-    elsif @dealers_hand.value > 21
+    if @dealers_hand.value > 21
       "Dealer Busted, you WIN!"
     elsif @players_hand.value > @dealers_hand.value && @players_hand.value < 22
       "You Won!"
@@ -61,48 +62,40 @@ class Blackjack
 
 
 
-  def run_the_game
-
+  def play_blackjack
     choice = ""
     setup
-
     puts "Your hand is: #{players_hand.show_card_face_for_messages} which is equal to: #{players_hand.value}"
     puts "The dealer's face-up card is: #{dealers_hand.show_card_face[0]}"
 
-    puts blackjack
-
     while choice != "Stand"
+      break if dealer_blackjack || player_blackjack
 
       puts "Hit or Stand?"
       choice = gets.chomp
-
-      break if choice == "Stand" || choice == "stand" || choice == "s" || choice == "Stay" || choice == "stay"
-
+      break if STAND.include? choice
       deal_card_to_player
-
-      break if @players_hand.value >= 22
       puts "Your hand is: #{players_hand.show_card_face_for_messages} which is equal to: #{players_hand.value}"
-
+      break if @players_hand.value >= 21
     end
 
-    puts "Your hand is: #{players_hand.show_card_face_for_messages} which is equal to: #{players_hand.value}"
-
-    if @players_hand.value > 21
-      puts "Busted"
+    if dealer_blackjack
+      puts "Dealer draws Blackjack. You Lose"
+    elsif player_blackjack
+      puts "BLACKJACK! You Win!!"
     else
-      until dealers_hand.value >= 17
-        deal_card_to_dealer
+      if @players_hand.value > 21
+        puts "Busted"
+      else
+        until dealers_hand.value >= 17
+          deal_card_to_dealer
+        end
+        puts "Your hand is: #{players_hand.show_card_face_for_messages} which is equal to: #{players_hand.value}"
+        puts "The dealers hand is: #{dealers_hand.show_card_face_for_messages} which is equal to: #{dealers_hand.value}"
       end
-      puts "The dealers hand is: #{dealers_hand.show_card_face_for_messages} which is equal to: #{dealers_hand.value}"
     end
-
     puts ''
     puts end_game
-
   end
 
 end
-
-game = Blackjack.new
-
-puts game.run_the_game

@@ -10,6 +10,8 @@ class Player
     @hand = cards
   end
 
+  def ask
 
+  end
 
 end
