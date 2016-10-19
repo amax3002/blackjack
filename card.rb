@@ -26,4 +26,8 @@ class Card
       return choice.to_i
     end
   end
+
+  def card_face
+    choice = self.number
+  end
 end

@@ -32,4 +32,12 @@ class DeckTest <Minitest::Test
     assert_equal count.size, 2
   end
 
+  # def test_get_value_of_hand
+  #   new_deck = Deck.new
+  #   count =[]
+  #   count << new_deck.deal_card
+  #   count << new_deck.deal_card
+  #   assert_equal count.number, 2
+  # end
+
 end

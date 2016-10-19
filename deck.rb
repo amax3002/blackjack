@@ -22,5 +22,4 @@ class Deck
   def deal_card
     cards.shift
   end
-
 end
